@@ -1,0 +1,15 @@
+Package: wireguard
+Pin: release a=buster-backports
+Pin-Priority: 500
+
+Package: wireguard-dkms
+Pin: release a=buster-backports
+Pin-Priority: 500
+
+Package: wireguard-tools
+Pin: release a=buster-backports
+Pin-Priority: 500
+
+Package: *
+Pin: release a=buster-backports
+Pin-Priority: 10

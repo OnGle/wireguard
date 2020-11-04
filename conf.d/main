@@ -1,2 +1,4 @@
 #!/bin/sh -ex
-echo "do nothing - core requires no post-package configuration commands"
+
+apt update
+apt install --assume-yes wireguard

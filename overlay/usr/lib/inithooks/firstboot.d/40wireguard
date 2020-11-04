@@ -1,0 +1,11 @@
+#!/bin/bash -e
+# initialize wireguard server keys & configuration
+
+. /etc/default/inithooks
+
+[ -e $INITHOOKS_CONF ] && . $INITHOOKS_CONF
+
+# skip initialization if headless (will be configured by turnkey-init)
+[ "$APP_DOMAIN" == "DEFAULT" ] && exit 0
+
+$INITHOOKS_PATH/bin/wireguard.py --virtual-subnet="$APP_IP" --domain="$APP_DOMAIN"
