@@ -1,6 +1,10 @@
 #!/usr/bin/python3
 """Initialize Wireguard server keys and configuration
 
+Options:
+
+    --profile=          profile to use (server or client)
+
 Server profile options:
 
     --virtual-subnet=   IP address of server and range of virtual subnet
@@ -35,27 +39,47 @@ def main():
     except getopt.GetoptError as e:
         usage(e)
 
+    profile = ""
     virtual_subnet = ""
     domain = ""
 
     for opt, val in opts:
         if opt in ('-h', '--help'):
             usage()
+        elif opt == '--profile':
+            profile = val
         elif opt == '--virtual-subnet':
             virtual_subnet = val
+        elif opt == '--domain':
+            domain = val
 
     dialog = Dialog("TurnKey Linux - First boot configuration")
 
+    if not profile:
+        profile = dialog.menu(
+                "Wireguard Profile",
+                "Choose a profile for this server.\n\n* Server: clients will route traffic through the VPN.",
+                [
+                    ('server', 'Accccept VPN connections from clients*'),
+                    ('client', 'Initiate VVPN connections to a server')
+                ])
+
+    if not profile in ('server', 'client'):
+        fatal(f'invalid profile: {profile!r}')
+
+    if profile == 'client':
+        return
+
     if not virtual_subnet:
         virtual_subnet = dialog.get_input(
-                "Wireguard Public Address",
+                "Wireguard Virtual Address",
                 "Enter IP address in CIDR of server reachable by clients",
                 "10.0.0.0/8")
 
 
     if not domain:
         domain = dialog.get_input(
-                "Wireguard domain",
+                "Wireguard Public Address",
                 "Used in client configuration as wireguard endpoint",
                 "www.example.com")
     
