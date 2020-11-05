@@ -1,4 +1,18 @@
-#!/bin/sh -ex
+#!/bin/bash -ex
 
+HTDOCS=/var/www/wireguard/htdocs
+
+# required as wireguard is only available in bullseye currently
 apt update
 apt install --assume-yes wireguard
+
+# webserver related
+mkdir -p /var/www/wireguard/logs
+chown www-data:www-data /var/www/wireguard/logs
+lighty-disable-mod ssl
+
+mkdir -p $HTDOCS/{css,images}
+cp /var/www/js/ui.* $HTDOCS/js/
+cp /var/www/css/*.css $HTDOCS/css/
+cp /var/www/images/{webmin.png,shell.png,tab.png} $HTDOCS/images/
+rm -rf /var/www/{js,css,images}

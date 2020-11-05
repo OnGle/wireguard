@@ -1,0 +1,37 @@
+#!/bin/bash -e
+
+fatal() { echo "FATAL: $@" 1>&2; exit 1; }
+
+usage() {
+cat<<EOF
+Syntax: $0 client-name
+Create an obfuscated URL for downloading the client profile via HTTPS.
+
+EOF
+exit 1
+}
+
+if [[ "$#" != "1" ]]; then
+    usage
+fi
+
+client_name=$1
+
+TEMPLATE=/var/www/wireguard/template.html
+PROFILES=/var/www/wireguard/htdocs/profiles
+
+CONF_PATH=/etc/wireguard/clients/$client_name.conf
+[ -e $CONF_PATH ] || fatal "$CONF_PATH does not exist"
+
+SERVER_ADDR=$(cat /etc/wireguard/domain.txt)
+PROFILE_HASH=$(sha1sum $CONF_PATH | cut -d " " -f 1)
+PROFILE_PATH=$PROFILES/$PROFILE_HASH
+
+mkdir -p $PROFILE_PATH
+cp $CONF_PATH $PROFILE_PATH/
+sed "s|CLIENT_NAME|$client_name|" $TEMPLATE > $PROFILE_PATH/index.html
+chown -R www-data:www-data $PROFILES
+chmod 440 $PROFILE_PATH/$client_name.conf
+
+echo "URL: https://$SERVER_ADDR/profiles/$PROFILE_HASH/"
+

@@ -17,9 +17,14 @@ def run():
             out, err = proc.communicate()
             returncode = proc.returncode
             if returncode == 0:
-                console.msgbox(TITLE, '{} ({})'.format(out, name))
+                out = console.yesno(f'{out}\nGenerate download link for conf?')
+                if out == 'yes':
+                    console.msgbox(TITLE, check_output([
+                        '/var/www/wireguard/bin/addprofile', name
+                    ], text=True))
+                break
             else:
-                console.msgbox(TITLE, '{} ({})'.format(err, name))
+                console.msgbox(TITLE, f'{err}')
             break
         else:
            break
