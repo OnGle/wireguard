@@ -4,18 +4,18 @@ strict server/client tunnel. Where "client" tunnels all of their
 traffic through "server". The virtual subnet used by these
 computers will be the 10.0.0.0/8 subnet.
 
-Setting up a wireguard server
-=============================
+Setting up a WireGuard® TurnKey Linux server
+============================================
 
-Setting up a turnkeylinux wireguard VPN server is dead simple.
+Setting up a WireGuard® TurnKey VPN server is dead simple.
 
 1. In the inithooks, choose ``server`` as your profile.
 
-2. Type in the address of your wireguard server within your virtual
-subnet when prompted for ``Wireguard Virtual Address`` as per
-this example configuration we put ``10.0.0.0/8`` here.
+2. Type in the address of your TurnKey WireGuard® server within your
+   virtual subnet when prompted for ``Wireguard Virtual Address`` as per
+   this example configuration we put ``10.0.0.0/8`` here.
 
-.. note::
+.. Note::
 
    This is in CIDR_ format and is used to describe both your
    VPN server's IP address within the virtual network but also 
@@ -41,7 +41,7 @@ this example configuration we put ``10.0.0.0/8`` here.
    192.168.1.1 for simplities sake. In this case we type in
    ``192.168.1.1``
 
-.. note::
+.. Note::
 
    The only bounds for this value is that it's already accessible
    by the client. So if connected to the wider internet you could
@@ -74,8 +74,8 @@ Each take 2 arguments:
 Both methods will generate a file
 ``/etc/wireguard/clients/<name>.conf`` 
 
-Setting up a wireguard client
-=============================
+Setting up a TurnKey WireGuard® client
+======================================
 
 So you've got your server, your client configuration now what?
 
@@ -88,4 +88,13 @@ So you've got your server, your client configuration now what?
 
 4. DONE!
 
+Important note re WireGuard® trademark
+======================================
+
+**Note**: WireGuard® is a registered trademarks of Jason A. Donenfeld.
+TurnKey Linux is not affiliated with Jason A. Donenfeld or `WireGuard®`_
+Neither this software appliance, or the TurnKey provided, custom
+configuration scripts are endorsed by Jason A. Donenfeld or `WireGuard®`_.
+
 .. _CIDR: https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing
+.. _WireGuard®: https://www.wireguard.com/

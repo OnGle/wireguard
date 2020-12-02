@@ -1,134 +1,44 @@
-TurnKey Core - Debian GNU/Linux with Batteries Included
-=======================================================
+VPN solution built with WireGuard® - Next Generation Open Source VPN
+====================================================================
 
-TurnKey Core is the base operating system which all TurnKey GNU/Linux
-solutions share in common. It is commonly deployed standalone as a
-convenient starting point for custom system integrations. Benefits
-include automatic daily security updates, 1-click backup and restore, a
-web control panel, and preconfigured system monitoring with optional
-email alerts.
+`WireGuard®`_ is an extremely simple yet fast and modern VPN that
+utilizes state-of-the-art cryptography. It aims to be faster, simpler,
+leaner, and more useful than IPsec, while avoiding the massive headache.
+It intends to be considerably more performant than OpenVPN.
 
-Features:
+The TurnKey Linux VPN software appliance leverages the open source
+WireGuard® software (installed from Debian repositories). It also has
+custom TurnKey configuration tools to support ease of setup. It can 
+link 2 otherwise unconnected LANs and/or secure traffic across public
+and/or insecure wifi connections and/or provide a secure solution for
+remote work scenarios.
 
-- **Base Operating System**: Debian GNU/Linux 9 (Stretch).
+This appliance includes all the standard features in `TurnKey Core`_,
+and on top of that:
 
-- **Build formats**: Deploys on bare metal, virtual machines (e.g.,
-  OpenStack, VMWare, VirtualBox, LXC, KVM, Xen) and in the cloud.
-   
-  - `ISO images`_: Generic installable Live CD. Installs anywhere.
-  - `Virtual Machine images`_: Optimized for virtualized hardware,
-    pre-installed and ready to run.
-  - Amazon Machine Image (AMI): Best launched via the `TurnKey
-    Hub`_.
+- WireGuard® configurations:
 
-- **Free as in speech**: `free software`_ with `full source code`_ and a
-  `powerful build system`_. Free of hidden backdoors, free from
-  restrictive licensing and free to learn from, modify and distribute.
+    - Initialization hooks to configure common WireGuard® deployments,
+      server key and confgiuration.
+    - Deployments include convenience scripts to add clients/profiles,
+      generating all required config.
+    - Expiring obfuscated HTTPS urls can be created for clients to
+      download their profiles (especially useful with mobile devices
+      using a QR code scanner).
 
-- **Secure and easy to maintain**: `Auto-updated daily`_ with latest
-  Debian security patches. Optional monitoring and email notification of
-  `system alerts`_.
+See the `Set up documentation`_ for further details.
 
-- **1-click backup and restore** (`TKLBAM`_): smart backup and data
-  migration software saves changes to files, databases and package
-  management to encrypted storage which a system can be automatically
-  restored from.
-  
-- **Dynamic DNS** (`HubDNS`_): Associates your IP with a custom domain
-  or the free \*.tklapp.com domain.
-
-- **Logical Volume Management** (`LVM`_): Instead of installing to a
-  fixed size partition, a Logical Volume is first created by default,
-  and this may later be expanded, even across multiple physical devices.
-
-- **AJAX web shell (Web CLI)** (`shellinabox`_) - secure command line access from
-  any web browser.
-
-- **Web management interface (WebUI)** (`Webmin`_):
-   
-  - Listens on port 12321 (uses SSL).
-  - Modern responsive theme: 'Authentic'.
-  - Network modules:
-     
-    - Firewall configuration (with example configuration).
-    - Network configuration.
-
-  -  System modules:
-     
-     - Backup and migration (TKLBAM).
-     - Configure time, date and timezone.
-     - Configure users and groups.
-     - Manage software packages.
-     - Change passwords.
-     - System logs.
-
-  -  Tool modules:
-     
-     - Text editor.
-     - Shell commands (note not proper interactive shell).
-     - Simple file upload/download.
-     - File manager (HTML5).
-     - Custom commands.
-
-  -  Hardware modules:
-     
-     - Partitions on local disks.
-     - Logical volume management.
-
-- **Simple configuration console (cli)** (`confconsole`_):
-   
-  - Displays basic usage information.
-  - Configure networking.
-  - Let's Encrypt SSL/TLS certificates.
-  - Mail SMTP relay setup.
-  - Proxy settings.
-  - Region and timezone.
-  - Other global system settings.
-
-- **First boot initialization** (`inithooks`_):
-   
-  - Prompt user for passwords.
-  - Regenerates SSL and SSH cryptographic keys.
-  - Installs latest security updates, unless user chooses to defer this
-    for later.
-
-- **Command line power tools**
-   
-  - Smart, programmable bash shell completion: helps you get more done
-    with fewer keystrokes.
-  - Support for $HOME/.bashrc.d `shell hooks`_
-  - Persistent environment variables (see $HOME/.bashrc.d/penv)::
-
-       penv-set pydoc /usr/share/doc/python2.7/html
-       exit
-       # later...
-       cd $pydoc
-
-- **Automatic time synchronization with NTP**
-
-- Take a look at some `screenshots`_.
+**Note**: WireGuard® and the "WireGuard" logo are registered trademarks of
+Jason A. Donenfeld. TurnKey Linux is not affiliated with Jason A. Donenfeld
+or `WireGuard®`_. Neither this software appliance, or the TurnKey provided,
+custom configuration scripts are endorsed by Jason A. Donenfeld or
+`WireGuard®`_.
 
 Credentials *(passwords set at first boot)*
 -------------------------------------------
 
--  Webmin, SSH, Shellinabox: username **root**
+-  Webmin, SSH: username **root**
 
-.. _free software: https://www.turnkeylinux.org/license
-.. _full source code: https://github.com/turnkeylinux-apps
-.. _powerful build system: https://www.turnkeylinux.org/tkldev
-.. _system alerts: https://www.turnkeylinux.org/docs/automatic-security-alerts
-.. _screenshots: https://www.turnkeylinux.org/screenshots/148
-.. _headless build types: https://www.turnkeylinux.org/docs/builds#builds-table
-.. _ISO images: https://www.turnkeylinux.org/docs/builds#iso
-.. _Virtual Machine images: https://www.turnkeylinux.org/docs/builds#vm
-.. _TurnKey Hub: https://hub.turnkeylinux.org
-.. _AMI codes: https://www.turnkeylinux.org/docs/ec2/ami
-.. _TKLBAM: https://www.turnkeylinux.org/tklbam
-.. _Auto-updated daily: https://www.turnkeylinux.org/docs/automatic-security-updates
-.. _HubDNS: https://www.turnkeylinux.org/dns
-.. _LVM: https://tldp.org/HOWTO/LVM-HOWTO/
-.. _shellinabox: https://github.com/shellinabox/shellinabox
-.. _confconsole: https://www.turnkeylinux.org/docs/confconsole#main-screen-and-basic-functionality
-.. _Webmin: https://webmin.com/
-.. _inithooks: https://github.com/turnkeylinux/inithooks
-.. _shell hooks: https://www.turnkeylinux.org/blog/generic-shell-hooks
+.. _WireGuard®: https://www.wireguard.com/
+.. _TurnKey Core: https://www.turnkeylinux.org/core
+.. _Set up documentation: https://github.com/turnkeylinux-apps/wireguard/blob/master/docs/setup.rst
