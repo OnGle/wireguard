@@ -15,8 +15,8 @@ Setting up a WireGuard® TurnKey VPN server is dead simple.
    virtual subnet when prompted for ``Wireguard Virtual Address`` as per
    this example configuration we put ``10.0.0.0/8`` here.
 
-.. Note::
-
+.. note::
+   
    This is in CIDR_ format and is used to describe both your
    VPN server's IP address within the virtual network but also 
    the subnet used by the virtual network.
@@ -41,8 +41,8 @@ Setting up a WireGuard® TurnKey VPN server is dead simple.
    192.168.1.1 for simplities sake. In this case we type in
    ``192.168.1.1``
 
-.. Note::
-
+.. note::
+   
    The only bounds for this value is that it's already accessible
    by the client. So if connected to the wider internet you could
    use a public IP address or a fqdn.

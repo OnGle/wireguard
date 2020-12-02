@@ -6,9 +6,9 @@ utilizes state-of-the-art cryptography. It aims to be faster, simpler,
 leaner, and more useful than IPsec, while avoiding the massive headache.
 It intends to be considerably more performant than OpenVPN.
 
-The TurnKey Linux VPN software appliance leverages the open source
-WireGuard® software (installed from Debian repositories). It also has
-custom TurnKey configuration tools to support ease of setup. It can 
+This TurnKey Linux VPN software appliance leverages the open source
+WireGuard® software (installed from Debian repositories). It also includes
+custom TurnKey configuration tools to support ease of setup. It can
 link 2 otherwise unconnected LANs and/or secure traffic across public
 and/or insecure wifi connections and/or provide a secure solution for
 remote work scenarios.
@@ -26,7 +26,7 @@ and on top of that:
       download their profiles (especially useful with mobile devices
       using a QR code scanner).
 
-See the `Set up documentation`_ for further details.
+See the `Set up documentation`_ for further details on how to set it up.
 
 **Note**: WireGuard® and the "WireGuard" logo are registered trademarks of
 Jason A. Donenfeld. TurnKey Linux is not affiliated with Jason A. Donenfeld
