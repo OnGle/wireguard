@@ -35,8 +35,6 @@ rm -rf /etc/wireguard/*
     wg genkey | tee $WIREGUARD/private/server.key | wg pubkey > $WIREGUARD/server.pub
 )
 
-echo '1' > /proc/sys/net/ipv4/ip_forward
-
 cat > $WIREGUARD/wg0.conf <<EOF
 [Interface]
 Address = $virtual_subnet
@@ -47,6 +45,7 @@ PostUp = iptables -A FORWARD -i wg0 -j ACCEPT; iptables -t nat -A POSTROUTING -o
 PostDown = iptables -D FORWARD -i wg0 -j ACCEPT; iptables -t nat -D POSTROUTING -o eth0 -j MASQUERADE;
 EOF
 wg-quick up wg0
+systemctl enable wg-quick@wg0.service
 
 echo "$domain" > /etc/wireguard/domain.txt
 
